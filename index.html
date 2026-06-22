@@ -27,17 +27,14 @@
 
   <meta name="google-site-verification" content="vxviiRGf7rLLCqLEhk4OdIgSakbqPJ9yjmizTTIqK_o" />
 
-   <!-- Google AdSense -->
+  <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3328565235324858"
      crossorigin="anonymous"></script>
-     
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- AdSense placeholder -->
-  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3328565235324858" crossorigin="anonymous"></script> -->
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -72,7 +69,6 @@
       line-height: 1.6;
     }
 
-    /* ── Layout ── */
     .layout {
       display: grid;
       grid-template-columns: 180px 1fr 180px;
@@ -84,7 +80,6 @@
       .ad-sidebar { display: none; }
     }
 
-    /* ── Sidebar Ads ── */
     .ad-sidebar {
       background: var(--ad-bg);
       border-right: 1px solid var(--ad-border);
@@ -103,20 +98,12 @@
     .ad-slot {
       width: 160px;
       min-height: 600px;
-      background: var(--surface);
-      border: 1px dashed var(--ad-border);
-      border-radius: var(--radius);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: var(--text-muted);
-      font-size: 11px;
-      text-align: center;
-      gap: 6px;
     }
 
-    /* ── Main ── */
     .main {
       display: flex;
       flex-direction: column;
@@ -125,7 +112,6 @@
       gap: 1.75rem;
     }
 
-    /* ── Header ── */
     .site-header {
       text-align: center;
       width: 100%;
@@ -142,16 +128,13 @@
       margin-bottom: 0.25rem;
     }
 
-    .site-logo span {
-      color: var(--accent);
-    }
+    .site-logo span { color: var(--accent); }
 
     .site-tagline {
       font-size: 13px;
       color: var(--text-muted);
     }
 
-    /* ── Countdown Card ── */
     .countdown-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -245,7 +228,6 @@
       padding: 1rem 0;
     }
 
-    /* ── Earnings ticker ── */
     .earnings-bar {
       background: var(--accent-light);
       border: 1px solid var(--border);
@@ -265,7 +247,6 @@
       color: var(--accent-dark);
     }
 
-    /* ── Input Card ── */
     .input-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -319,9 +300,7 @@
       transition: border-color 0.15s;
     }
 
-    .field input:focus {
-      border-color: var(--accent);
-    }
+    .field input:focus { border-color: var(--accent); }
 
     .save-row {
       display: flex;
@@ -355,22 +334,11 @@
     .btn:hover { opacity: 0.88; }
     .btn:active { transform: scale(0.99); }
 
-    /* ── Leaderboard Ad ── */
     .ad-leaderboard {
       width: 100%;
       max-width: 728px;
-      height: 90px;
-      background: var(--ad-bg);
-      border: 1px dashed var(--ad-border);
-      border-radius: var(--radius);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      color: var(--text-muted);
     }
 
-    /* ── Info / FAQ ── */
     .info-section {
       width: 100%;
       max-width: 540px;
@@ -386,10 +354,25 @@
       color: var(--text-primary);
     }
 
+    .info-section h3 {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+
     .info-section p {
       font-size: 14px;
       color: var(--text-secondary);
       line-height: 1.7;
+    }
+
+    .info-section ul {
+      margin-left: 1.25rem;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.9;
     }
 
     .faq-item {
@@ -407,6 +390,12 @@
     .faq-item p {
       font-size: 13px;
       color: var(--text-secondary);
+    }
+
+    .content-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0.5rem 0;
     }
 
     footer {
@@ -428,7 +417,8 @@
       .input-row { grid-template-columns: 1fr; }
     }
   </style>
-<!-- Google tag (gtag.js) -->
+
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FEB1SVLLGY"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -444,8 +434,13 @@
 
   <aside class="ad-sidebar" aria-label="Advertisement">
     <div class="ad-slot">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-      <span>160×600<br>Ad unit</span>
+      <ins class="adsbygoogle"
+           style="display:block;width:160px;min-height:600px"
+           data-ad-client="ca-pub-3328565235324858"
+           data-ad-slot="2148641443"
+           data-ad-format="auto"
+           data-full-width-responsive="false"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
   </aside>
 
@@ -497,7 +492,13 @@
 
     <!-- Leaderboard ad -->
     <div class="ad-leaderboard" role="complementary" aria-label="Advertisement">
-      728×90 Ad unit
+      <ins class="adsbygoogle"
+           style="display:block;width:100%;height:90px"
+           data-ad-client="ca-pub-3328565235324858"
+           data-ad-slot="2148641443"
+           data-ad-format="horizontal"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <!-- Input card -->
@@ -526,8 +527,44 @@
 
     <!-- SEO / FAQ -->
     <section class="info-section" aria-label="About Retired Yet">
+
       <h2>How to use the retirement countdown</h2>
-      <p>Enter your planned retirement date and press Start countdown. The timer counts down in real time — days, hours, minutes, and seconds — until your last day of work. Optionally enter your salary to see how much you've earned today. Bookmark it and check back every morning to watch that number drop.</p>
+      <p>Enter your planned retirement date and press <strong>Start countdown</strong>. The timer counts down in real time — days, hours, minutes, and seconds — until your last day of work. Optionally enter your salary to see how much you've earned today. Bookmark it and check back every morning to watch that number drop.</p>
+
+      <hr class="content-divider">
+
+      <h2>The Countdown to Your Freedom</h2>
+      <p>Retirement is one of the biggest milestones of your life — the day you stop trading time for money and start living entirely on your own terms. Whether you're 5 years out or 5 months away, having a visual countdown makes the goal feel real and within reach.</p>
+
+      <p>Retired Yet? was built for people who are serious about getting there. Check in every morning, watch the days tick down, and let the countdown remind you why you're saving, planning, and pushing through. Every day that passes is a day you'll never have to work again.</p>
+
+      <hr class="content-divider">
+
+      <h3>Common Retirement Milestones to Count Down To</h3>
+      <ul>
+        <li>Age 59½ — penalty-free 401(k) and IRA withdrawals begin</li>
+        <li>Age 62 — earliest Social Security eligibility</li>
+        <li>Age 65 — Medicare eligibility begins</li>
+        <li>Age 66–67 — full Social Security retirement benefit (depending on birth year)</li>
+        <li>Age 70 — maximum Social Security benefit if you delay claiming</li>
+        <li>FIRE date — Financial Independence, Retire Early target</li>
+        <li>Pension vesting date — when your pension becomes fully yours</li>
+        <li>Your personal "enough" number — when savings hit your target</li>
+      </ul>
+
+      <hr class="content-divider">
+
+      <h3>Who Uses Retired Yet?</h3>
+      <ul>
+        <li>Workers counting down their final years before retirement</li>
+        <li>FIRE movement followers tracking their financial independence date</li>
+        <li>Government and military employees approaching pension eligibility</li>
+        <li>Teachers counting down to the end of their career</li>
+        <li>Anyone who has a target retirement date and wants to watch it approach</li>
+        <li>Spouses and partners counting down together to shared retirement</li>
+      </ul>
+
+      <hr class="content-divider">
 
       <div class="faq-item">
         <h3>Will it remember my retirement date?</h3>
@@ -536,18 +573,29 @@
 
       <div class="faq-item">
         <h3>How do I know when I can retire?</h3>
-        <p>Common retirement ages are 62 (earliest Social Security eligibility), 65-67 (full Social Security benefit depending on birth year), and 59½ (penalty-free 401k withdrawals). Your planned retirement date depends on your savings, expenses, and goals.</p>
+        <p>Common retirement ages are 62 (earliest Social Security eligibility), 65-67 (full Social Security benefit depending on birth year), and 59½ (penalty-free 401k withdrawals). Your planned retirement date depends on your savings, expenses, and personal goals. A financial advisor can help you calculate your specific number.</p>
       </div>
 
       <div class="faq-item">
         <h3>What is the earnings tracker?</h3>
-        <p>If you enter your annual salary, the timer shows how much you've earned so far today based on a standard 8-hour workday. A fun way to watch the clock while you count down to freedom.</p>
+        <p>If you enter your annual salary, the timer shows how much you've earned so far today based on a standard 8-hour workday. It's a fun way to watch the clock while you count down to freedom — and a reminder of what your time is worth.</p>
       </div>
 
       <div class="faq-item">
         <h3>Can I share this with my spouse?</h3>
-        <p>Absolutely — just share the link to retired-yet.com and have them enter the same date. You can both count down to the big day together.</p>
+        <p>Absolutely — just share the link to retired-yet.com and have them enter the same date. You can both count down to the big day together from any device.</p>
       </div>
+
+      <div class="faq-item">
+        <h3>Does it work on mobile?</h3>
+        <p>Yes — Retired Yet? is fully mobile-responsive. Bookmark it to your home screen for a one-tap daily reminder of how close you are to the finish line.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is it free?</h3>
+        <p>Completely free, always. No account required, no subscription, no app to download. Just enter your retirement date and start the countdown.</p>
+      </div>
+
     </section>
 
     <footer>
@@ -558,8 +606,13 @@
 
   <aside class="ad-sidebar" aria-label="Advertisement">
     <div class="ad-slot">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-      <span>160×600<br>Ad unit</span>
+      <ins class="adsbygoogle"
+           style="display:block;width:160px;min-height:600px"
+           data-ad-client="ca-pub-3328565235324858"
+           data-ad-slot="2148641443"
+           data-ad-format="auto"
+           data-full-width-responsive="false"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
   </aside>
 
