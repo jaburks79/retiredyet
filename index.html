@@ -80,10 +80,11 @@
       .ad-sidebar { display: none; }
     }
 
+    /* Sidebars hidden until countdown starts */
     .ad-sidebar {
       background: var(--ad-bg);
       border-right: 1px solid var(--ad-border);
-      display: flex;
+      display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -93,6 +94,10 @@
     .ad-sidebar:last-child {
       border-right: none;
       border-left: 1px solid var(--ad-border);
+    }
+
+    .ad-sidebar.visible {
+      display: flex;
     }
 
     .ad-slot {
@@ -334,9 +339,15 @@
     .btn:hover { opacity: 0.88; }
     .btn:active { transform: scale(0.99); }
 
+    /* Leaderboard ad — hidden until countdown starts */
     .ad-leaderboard {
       width: 100%;
       max-width: 728px;
+      display: none;
+    }
+
+    .ad-leaderboard.visible {
+      display: block;
     }
 
     .info-section {
@@ -413,7 +424,7 @@
     @media (max-width: 600px) {
       .countdown-number { font-size: 34px; }
       .countdown-card { padding: 1.25rem; }
-      .ad-leaderboard { display: none; }
+      .ad-leaderboard { display: none !important; }
       .input-row { grid-template-columns: 1fr; }
     }
   </style>
@@ -432,7 +443,7 @@
 
 <div class="layout">
 
-  <aside class="ad-sidebar" aria-label="Advertisement">
+  <aside class="ad-sidebar" id="ad-left" aria-label="Advertisement">
     <div class="ad-slot">
       <ins class="adsbygoogle"
            style="display:block;width:160px;min-height:600px"
@@ -451,9 +462,33 @@
       <p class="site-tagline">Count down to the last day you'll ever have to work</p>
     </header>
 
+    <!-- Input card FIRST — real content above the fold -->
+    <div class="input-card">
+      <h2>Your retirement</h2>
+      <div class="field">
+        <label for="retire-date">Retirement date</label>
+        <input type="date" id="retire-date">
+      </div>
+      <div class="input-row">
+        <div class="field">
+          <label for="annual-salary">Annual salary (optional)</label>
+          <input type="number" id="annual-salary" placeholder="e.g. 75000" min="0">
+        </div>
+        <div class="field">
+          <label for="retire-name">Your name (optional)</label>
+          <input type="text" id="retire-name" placeholder="e.g. John">
+        </div>
+      </div>
+      <label class="save-row">
+        <input type="checkbox" id="save-data" checked>
+        Remember my retirement date on this device
+      </label>
+      <button class="btn" onclick="startCountdown()">Start countdown</button>
+    </div>
+
     <!-- Countdown display -->
     <div class="countdown-card" role="region" aria-label="Retirement countdown timer">
-      <div class="answer-display" id="answer-display">Not yet — but enter your date below</div>
+      <div class="answer-display" id="answer-display">Not yet — but enter your date above</div>
 
       <div class="countdown-grid">
         <div class="countdown-unit">
@@ -482,16 +517,16 @@
       <div class="progress-track">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
-      <div class="progress-label" id="progress-label">Enter your retirement date below</div>
+      <div class="progress-label" id="progress-label">Enter your retirement date above</div>
     </div>
 
-    <!-- Earnings ticker -->
+    <!-- Earnings ticker — shown after countdown starts with salary -->
     <div class="earnings-bar" id="earnings-bar">
       💰 You've earned <strong id="earnings-display">$0.00</strong> at work today
     </div>
 
-    <!-- Leaderboard ad -->
-    <div class="ad-leaderboard" role="complementary" aria-label="Advertisement">
+    <!-- Leaderboard ad — only shown after countdown starts -->
+    <div class="ad-leaderboard" id="ad-leaderboard" role="complementary" aria-label="Advertisement">
       <ins class="adsbygoogle"
            style="display:block;width:100%;height:90px"
            data-ad-client="ca-pub-3328565235324858"
@@ -501,31 +536,7 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- Input card -->
-    <div class="input-card">
-      <h2>Your retirement</h2>
-      <div class="field">
-        <label for="retire-date">Retirement date</label>
-        <input type="date" id="retire-date">
-      </div>
-      <div class="input-row">
-        <div class="field">
-          <label for="annual-salary">Annual salary (optional)</label>
-          <input type="number" id="annual-salary" placeholder="e.g. 75000" min="0">
-        </div>
-        <div class="field">
-          <label for="retire-name">Your name (optional)</label>
-          <input type="text" id="retire-name" placeholder="e.g. John">
-        </div>
-      </div>
-      <label class="save-row">
-        <input type="checkbox" id="save-data" checked>
-        Remember my retirement date on this device
-      </label>
-      <button class="btn" onclick="startCountdown()">Start countdown</button>
-    </div>
-
-    <!-- SEO / FAQ -->
+    <!-- SEO / FAQ content — always visible -->
     <section class="info-section" aria-label="About Retired Yet">
 
       <h2>How to use the retirement countdown</h2>
@@ -604,7 +615,7 @@
 
   </main>
 
-  <aside class="ad-sidebar" aria-label="Advertisement">
+  <aside class="ad-sidebar" id="ad-right" aria-label="Advertisement">
     <div class="ad-slot">
       <ins class="adsbygoogle"
            style="display:block;width:160px;min-height:600px"
@@ -623,8 +634,17 @@
 
   var ticker = null;
   var earningsTicker = null;
+  var adsShown = false;
 
   function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
+
+  function showAds() {
+    if (adsShown) return;
+    adsShown = true;
+    document.getElementById('ad-left').classList.add('visible');
+    document.getElementById('ad-right').classList.add('visible');
+    document.getElementById('ad-leaderboard').classList.add('visible');
+  }
 
   function loadSaved() {
     try {
@@ -653,11 +673,9 @@
 
   function startEarningsTicker(annualSalary) {
     if (!annualSalary || annualSalary <= 0) return;
-    var earningsBar = document.getElementById('earnings-bar');
-    earningsBar.style.display = 'block';
+    document.getElementById('earnings-bar').style.display = 'block';
 
-    var dailyRate = annualSalary / 365;
-    var perSecond = dailyRate / 86400;
+    var perSecond = annualSalary / 365 / 86400;
 
     if (earningsTicker) clearInterval(earningsTicker);
 
@@ -665,8 +683,7 @@
       var now = new Date();
       var startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
       var secondsToday = (now - startOfDay) / 1000;
-      var earned = secondsToday * perSecond;
-      document.getElementById('earnings-display').textContent = '$' + earned.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('earnings-display').textContent = '$' + (secondsToday * perSecond).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     }
 
     tickEarnings();
@@ -684,6 +701,7 @@
     }
 
     saveData();
+    showAds();
 
     var targetDate = new Date(dateVal + 'T00:00:00');
     var answerEl = document.getElementById('answer-display');
