@@ -77,14 +77,13 @@
 
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; }
-      .ad-sidebar { opacity: 0; pointer-events: none; }
+      .ad-sidebar { display: none; }
     }
 
-    /* Sidebars hidden until countdown starts */
     .ad-sidebar {
       background: var(--ad-bg);
       border-right: 1px solid var(--ad-border);
-      display: none;
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -96,8 +95,15 @@
       border-left: 1px solid var(--ad-border);
     }
 
-    .ad-sidebar.visible {
-      display: flex;
+    /* Hide ad content until countdown starts */
+    .ad-slot {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .ad-sidebar.visible .ad-slot {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .ad-slot {
